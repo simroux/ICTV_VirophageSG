@@ -6,4 +6,4 @@ HMM models for the 3 Maveriviricetes hallmark genes: Major Capsid protein (MCP),
 
 Example of search using these models:
 
-$ hmmsearch --cut_tc --noali -o Your_contigs-vs-hallmark.tc.full_output --tblout Your_contigs-vs-hallmark.tc.tsv Maveriviricetes_hallmark.2022-05-19.hmm  Your_contigs.fasta
+$ hmmsearch --cut_tc --noali -o Your_contigs-vs-Maveriviricetes_hallmark.tc.full_output --tblout Your_contigs-vs-Maveriviricetes_hallmark.tc.tsv Maveriviricetes_hallmark.2022-05-19.hmm  Your_contigs.fasta
