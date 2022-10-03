@@ -1,0 +1,10 @@
+MCP	HMM	50
+Penton	HMM	40
+ATPase	HMM	40
+PRO	HMM	40
+PLV	HMM	50
+Freshwater_virophages	Blast	200
+Giant_virophages	Blast	200
+Mavirus_virophages	Blast	150
+Rumen_virophages	Blast	150
+Sputnik_virophages	Blast	245
