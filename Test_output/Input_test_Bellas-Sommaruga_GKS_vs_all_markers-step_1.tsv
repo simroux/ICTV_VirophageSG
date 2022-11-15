@@ -60,9 +60,9 @@ V423K_contig_5898_len_29290_bp_24             -          PRO_2                - 
 # Program:         hmmsearch
 # Version:         3.3.2 (Nov 2020)
 # Pipeline mode:   SEARCH
-# Query file:      Db/All_markers.hmm
+# Query file:      Db//All_markers.hmm
 # Target file:     Test_output/Input_test_Bellas-Sommaruga_GKS.faa
-# Option settings: hmmsearch -o /dev/null --tblout Test_output/Input_test_Bellas-Sommaruga_GKS_vs_all_markers-step_1.tsv --noali -E 1.0e-05 --cpu 4 Db/All_markers.hmm Test_output/Input_test_Bellas-Sommaruga_GKS.faa 
+# Option settings: hmmsearch -o /dev/null --tblout Test_output/Input_test_Bellas-Sommaruga_GKS_vs_all_markers-step_1.tsv --noali -E 1.0e-05 --cpu 4 Db//All_markers.hmm Test_output/Input_test_Bellas-Sommaruga_GKS.faa 
 # Current dir:     /global/cfs/cdirs/pkmeco/virus/ICTV_Virophage/Dataset_August_Paper/Affiliation_others/Package/ICTV_VirophageSG
-# Date:            Mon Oct  3 09:18:47 2022
+# Date:            Tue Nov 15 14:47:33 2022
 # [ok]

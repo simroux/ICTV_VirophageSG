@@ -8,9 +8,9 @@ V4MERGE_NODE_3020_length_10138_cov_7.024053_9 -          PC_054               - 
 # Program:         hmmsearch
 # Version:         3.3.2 (Nov 2020)
 # Pipeline mode:   SEARCH
-# Query file:      Db/PLV_PC_054.hmm
+# Query file:      Db//PLV_PC_054.hmm
 # Target file:     Test_output/Input_test_Bellas-Sommaruga_GKS.faa
-# Option settings: hmmsearch -o /dev/null --tblout Test_output/Input_test_Bellas-Sommaruga_GKS_vs_PLV_Marker.tsv --noali -E 1.0e-05 --cpu 4 Db/PLV_PC_054.hmm Test_output/Input_test_Bellas-Sommaruga_GKS.faa 
+# Option settings: hmmsearch -o /dev/null --tblout Test_output/Input_test_Bellas-Sommaruga_GKS_vs_PLV_Marker.tsv --noali -E 1.0e-05 --cpu 4 Db//PLV_PC_054.hmm Test_output/Input_test_Bellas-Sommaruga_GKS.faa 
 # Current dir:     /global/cfs/cdirs/pkmeco/virus/ICTV_Virophage/Dataset_August_Paper/Affiliation_others/Package/ICTV_VirophageSG
-# Date:            Mon Oct  3 09:19:19 2022
+# Date:            Tue Nov 15 14:47:36 2022
 # [ok]

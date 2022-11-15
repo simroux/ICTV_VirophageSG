@@ -8,24 +8,28 @@ my $dir='';
 my $input_file="";
 my $out_dir="";
 my $n_cpu=4;
-GetOptions ('help' => \$h, 'h' => \$h, 'i=s'=>\$input_file, 'o=s'=>\$out_dir, 't=s'=>\$n_cpu);
+my $full_out=0;
+my $db_dir="Db/";
+GetOptions ('help' => \$h, 'h' => \$h, 'i=s'=>\$input_file, 'o=s'=>\$out_dir, 'd=s'=>\$db_dir, 't=s'=>\$n_cpu, 'f'=>\$full_out);
 if ($h==1 || $input_file eq "" || $out_dir eq ""){ # If asked for help or did not set up any argument
 	print "# Script to affi a fasta file
 # Arguments :
 # -i: input file
 # -o: output directory
 # Optional:
+# -d: path to the database folder (if different from Db/)
 # -t: number of threads (default = 4)
+# -f: include all contigs in the output file, even if not identified as either virophage or PLV
 ";
 	die "\n";
 }
 ## Cutoff and taxa names stored in centralized files
-my $cutoff_file="Db/Cutoffs.tsv";
-my $db_name="Db/names.tsv";
+my $cutoff_file=$db_dir."/Cutoffs.tsv";
+my $db_name=$db_dir."/names.tsv";
 ##
-my $db_hmm="Db/All_markers.hmm";
-my $blast_db="Db/MCP_blast_db";
-my $db_hmm_plv="Db/PLV_PC_054.hmm";
+my $db_hmm=$db_dir."/All_markers.hmm";
+my $blast_db=$db_dir."/MCP_blast_db";
+my $db_hmm_plv=$db_dir."/PLV_PC_054.hmm";
 
 $input_file=~/(.*)\.[^\.]+/;
 my $tmp=$1;
@@ -85,7 +89,7 @@ if (!(-e $PLV_result)){
 }
 ## Make a final file with affiliation of everything
 my $summary_file=$wdir.$basename."_final_affiliation.tsv";
-&summarize($input_file,$virophage_list,$best_marker_result,$family_affi,$PLV_result,$db_name,$summary_file,$cutoff_file);
+&summarize($input_file,$virophage_list,$best_marker_result,$family_affi,$PLV_result,$db_name,$summary_file,$cutoff_file,$full_out);
 
 sub summarize{
       my $in_fna=$_[0];
@@ -96,6 +100,7 @@ sub summarize{
       my $file_name=$_[5];
       my $out_file=$_[6];
 	my $cutoff_file=$_[7];
+	my $tag_full=$_[8];
       my %translate_name;
       open my $tsv,"<",$file_name;
       while(<$tsv>){
@@ -181,25 +186,31 @@ sub summarize{
 	print "##################### FINAL RESULTS ###########################\n";
       open my $s1,">",$out_file;
       print $s1 "Genome\tAssignation (Class;Family)\tMaveriviricetes marker list\n";
+	my $tag=0;
       foreach my $genome (sort keys %info){
             my $line=$genome;
+		$tag=0;
             if ($info{$genome}{"Maveriviricetes"}==1){
                   $line.="\tMaveriviricetes";
                   if (defined($info{$genome}{"family"})){$line.=";".$info{$genome}{"family"};}
                   else{$line.=";Unclassified";}
                   my @list=sort keys %{$info{$genome}{"markers"}};
                   $line.="\t".join(" ",@list);
+			$tag=1;
                   # if ($info{$genome}{"PLV_hit"}==1){$line.="\tAdditional hit to PLV";}
             }
             else{
-                  if ($info{$genome}{"PLV_hit"}==1){$line.="\tPossible_PLV";}
+                  if ($info{$genome}{"PLV_hit"}==1){$line.="\tPossible_PLV"; $tag=1;}
                   else{$line.="\tNA";}
                   $line.="\tNA";
             }
-            print $s1 $line."\n";
-		print $line."\n";
+		if ($tag==1 || $tag_full==1){
+            	print $s1 $line."\n";
+			print $line."\n";
+		}
       }
       close $s1;
+
 	print "#################################################################\n";
 	print "Results stored in $out_file\n";
 }

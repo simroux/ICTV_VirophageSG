@@ -3,8 +3,10 @@ Penton	HMM	40
 ATPase	HMM	40
 PRO	HMM	40
 PLV	HMM	50
-Freshwater_virophages	Blast	200
-Giant_virophages	Blast	200
+Sputnik_virophages	Blast	245
 Mavirus_virophages	Blast	150
 Rumen_virophages	Blast	150
-Sputnik_virophages	Blast	245
+Aquatic_virophages_1	Blast	200
+Aquatic_virophages_2	Blast	200
+SW01_virophages	Blast	200
+Large_virophages	Blast	200
