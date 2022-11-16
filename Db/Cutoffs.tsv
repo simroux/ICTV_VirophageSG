@@ -6,7 +6,7 @@ PLV	HMM	50
 Sputnik_virophages	Blast	245
 Mavirus_virophages	Blast	150
 Rumen_virophages	Blast	150
-Aquatic_virophages_1	Blast	200
-Aquatic_virophages_2	Blast	200
-SW01_virophages	Blast	200
-Large_virophages	Blast	200
+Aquatic_virophages_1	Blast	300
+Aquatic_virophages_2	Blast	350
+SW01_virophages	Blast	310
+Large_virophages	Blast	250
