@@ -1,6 +1,16 @@
 # ICTV_VirophageSG
 Data and information related to work by the ICTV Virophage Study Group
 
+# Databases
+
+- All_markers.hmm  
+HMM database of virophage-specific markers intended to assign new genomes to the *Maveriviricetes* class.
+
+- MCP_blast_db  
+Blast database intended to assign members of the *Maveriviricetes* class to lower taxa. Note: ideally, this assignment would be based on a phylogenomic analysis.
+This blast database is only provided to offer an alternative method to assign new sequences to existing virophage taxa based, in cases where a de novo phylogenomic
+analysis is impractical.
+
 # Virophage affiliation scripts
 Set of scripts to search for virophage marker genes and assign new sequences to existing virophage taxa
 
