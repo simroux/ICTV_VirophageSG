@@ -41,3 +41,7 @@ The main output file is XXXX_final_affiliation.tsv, which assigns each input seq
 The file XXXX_best_markers-step_1.tsv lists the specific predicted proteins associated with all virophage markers detected, while
 XXXX_virophage_cds_to_family.tsv includes the list of MCP hits used to assign new sequences to virophage families. All other intermediary
 files can be safely ignored by most users.
+
+## Genus delineation and example scripts
+
+Genera within the *Maveriviricetes* class are proposed to be defined based on the identification of 7 shared genes or more between pairs of genomes. An example of this gene-sharing-based clustering is provided in "Example_scripts_genus/"

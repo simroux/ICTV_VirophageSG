@@ -1,0 +1,12 @@
+#### Scripts adapted from: https://github.com/snayfach/MGV/tree/master/aai_cluster
+## Example of running a genus-level clustering
+# Compare all vs all cds (in a prodigal format) 
+diamond makedb --in Virophages_cds.faa --db Virophages_cds --threads 6
+diamond blastp --query Virophages_cds.faa --db Virophages_cds --out Virophages_cds-blastp.tsv --outfmt 6 --evalue 1e-5 --max-target-seqs 10000 --query-cover 50 --subject-cover 50
+# Compute AAI between all pairs of genomes
+python amino_acid_identity-v3.py --in_faa Virophages_cds.faa --in_blast Virophages_cds-blastp.tsv --out_tsv Virophages_cds-blastp_aai.tsv
+# Filter these pairwise AAI to only select the ones relevant for genus delineation
+python filter_aai_v3.py --in_aai Virophages_cds-blastp_aai.tsv --min_percent_shared 100 --min_num_shared 7 --min_aai 40 --out_tsv Virophages_cds-blastp_aai_genus_edges.tsv
+cat FINAL_Selected_all.pmeta-aai_genus_edges.tsv | gawk -F '\t' '{if ($3>=0.15){print $0}}' > Virophages_cds-blastp_aai_genus_edges-filtered.tsv
+# Run MCL to remove spurious connections and identify connected components
+mcl Virophages_cds-blastp_aai_genus_edges-filtered.tsv -I 2.0 --abc -o Virophages_cds-blastp_aai_genus_clusters.txt
