@@ -45,3 +45,24 @@ files can be safely ignored by most users.
 ## Genus delineation and example scripts
 
 Genera within the *Maveriviricetes* class are proposed to be defined based on the identification of 7 shared genes or more between pairs of genomes. An example of this gene-sharing-based clustering is provided in "Example_scripts_genus/"
+
+# About - Copyright Notice
+
+Custom script used in 'Updated virophage taxonomy and distinction from
+polinton-like viruses' (Virophage_Scripts) Copyright (c) 2023, The Regents
+of the University of California, through Lawrence Berkeley National Laboratory
+(subject to receipt of any required approvals from the U.S. Dept. of Energy). 
+All rights reserved.
+
+If you have questions about your rights to use or distribute this software,
+please contact Berkeley Lab's Intellectual Property Office at
+IPO@lbl.gov.
+
+NOTICE.  This Software was developed under funding from the U.S. Department
+of Energy and the U.S. Government consequently retains certain rights.  As
+such, the U.S. Government has been granted for itself and others acting on
+its behalf a paid-up, nonexclusive, irrevocable, worldwide license in the
+Software to reproduce, distribute copies to the public, prepare derivative 
+works, and perform publicly and display publicly, and to permit others to do so.
+
+
