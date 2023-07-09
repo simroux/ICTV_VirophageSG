@@ -44,7 +44,7 @@ if (!(-d $wdir)){
 	print "Please create the directory $out_dir before running the affiliation script\n";
 	die("\n");
 }
-if (!($wdir=~/\//)){$wdir.="/";}
+if (!($wdir=~/\/$/)){$wdir.="/";}
 ## First step, prodigal
 my $faa_file=$wdir.$basename.".faa";
 if (!(-e $faa_file)){
@@ -60,6 +60,8 @@ if (!(-e $hmm_step_1)){
 my $best_marker_result=$wdir.$basename."_best_markers-step_1.tsv";
 if (!(-e $best_marker_result)){
       &parse_step_1($faa_file,$hmm_step_1,$best_marker_result);
+	my $prefix=$wdir.$basename;
+	&get_faa_markers($faa_file,$best_marker_result,$prefix);
 }
 ## Get the list of virophages from there
 my $virophage_list=$wdir.$basename."_virophages_list.tsv";
@@ -387,6 +389,56 @@ sub parse_step_1{
             }
       }
       close $s1;
+}
+
+sub get_faa_markers{
+	my $faa_in=$_[0];
+	my $result_file=$_[1];
+	my $prefix=$_[2];
+	my %check;
+	my %markers;
+	open my $tsv,"<",$result_file;
+	while(<$tsv>){
+		chomp($_);
+		my @tab=split("\t",$_);
+		if ($tab[0] eq "Genome" || $tab[2] eq "NA"){next;}
+		$check{$tab[3]}{"marker"}=$tab[1];
+		$markers{$tab[1]}{"check"}=1;
+	}
+	close $tsv;
+	## Prep out files
+	foreach my $marker (sort keys %markers){
+		my $out_file=$prefix."_".$marker.".faa";
+		if (-e $out_file){&run_cmd("rm $out_file");}
+		$markers{$marker}{"file"}=$out_file;
+	}
+	my $stdout;
+	my $tag=0;
+	open my $fa,"<",$faa_in;
+	while(<$fa>){
+		chomp($_);
+		if ($_=~/^>(\S+)/){
+			my $id=$1;
+			if ($tag==1){
+				close $stdout;
+				$tag=0;
+			}
+			if (defined($check{$id})){
+				$tag=1;
+				open $stdout,">>",$markers{$check{$id}{"marker"}}{"file"};
+				print $stdout $_."\n";
+			}
+		}
+		elsif($tag==1){
+			$_=~s/\*$//;
+			print $stdout $_."\n";
+		}
+	}
+	if ($tag==1){
+		close $stdout;
+		$tag=0;
+	}
+	close $fa;
 }
 
 
