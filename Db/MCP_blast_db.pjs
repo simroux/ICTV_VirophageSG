@@ -1,0 +1,22 @@
+{
+  "version": "1.2",
+  "dbname": "MCP_blast_db",
+  "dbtype": "Protein",
+  "db-version": 5,
+  "description": "MCP.faa",
+  "number-of-letters": 139166,
+  "number-of-sequences": 219,
+  "last-updated": "2026-05-24T15:48:00",
+  "number-of-volumes": 1,
+  "bytes-total": 202446,
+  "bytes-to-cache": 141234,
+  "files": [
+    "MCP_blast_db.pdb",
+    "MCP_blast_db.phr",
+    "MCP_blast_db.pin",
+    "MCP_blast_db.pot",
+    "MCP_blast_db.psq",
+    "MCP_blast_db.ptf",
+    "MCP_blast_db.pto"
+  ]
+}
